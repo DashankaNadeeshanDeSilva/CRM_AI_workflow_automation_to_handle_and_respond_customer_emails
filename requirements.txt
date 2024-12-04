@@ -1,0 +1,7 @@
+tranformers
+langchain
+chromadb
+pandas
+imaplib
+smtplib
+fastapi
