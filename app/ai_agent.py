@@ -1,6 +1,8 @@
+import logging
+
 from services.email_processor import EMail_Processor
 from services.intent_classification import Intent_Classifier
-import logging
+from services.utils import extract_email_details
 
 
 logger = logging.getLogger("AI_Agent")
@@ -29,6 +31,16 @@ class AI_Agent():
 
         # Step 2: indent classification
         for email in emails["emails"]:
+            logger.info(f"Processing email")
+            sender, subject, email_body = extract_email_details(email)
             
+            # get intent classification
+            classification = self.indent_classifier.get_classification(email_body)
+            intent_class = classification["Class"]
+            intent_class_reasoning = classification["Reason"]
+
+
+
+
          
 

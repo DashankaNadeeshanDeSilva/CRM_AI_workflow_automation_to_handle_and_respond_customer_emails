@@ -44,7 +44,9 @@ class Intent_Classifier():
 
         response_data = response.json()
         response_content = response_data.get("choices", [{}])[0].get("message", {}).get("content", "No content found")
-        return dict(line.split(": ", 1) for line in response_content.split(", \n"))
+        classification = dict(line.split(": ", 1) for line in response_content.split(", \n"))
+        
+        return classification
     
         '''
         except ValueError:
