@@ -39,6 +39,21 @@ class AI_Agent():
             intent_class = classification["Class"]
             intent_class_reasoning = classification["Reason"]
 
+            # Response generator
+            '''
+            inputs: sender, subject, email_body, intent_class, intent_class_reasoning
+            Tasks:
+                - Check if required to get info from knowlege based (vector db)
+                - Create tickets if requires (for general inquaries, only generate repsonse with knwoledge base) 
+                - Generate response email including:
+                    - Initial greeting and overview answer
+                    - Actual response for the customer inquiry including ticket no if exists
+                    - Next steps for the customer inqury if a ticket is involved
+                    - closing remarks with thanking or apology  
+                - Log activities including email data and actions taken
+                
+            '''
+
 
 
 
