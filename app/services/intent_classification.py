@@ -18,7 +18,7 @@ class Intent_Classifier():
         self.CLASSFICATION_PROMPT_HEAD = get_text_from_md("prompts/intent_classification_head.md")
         self.CLASSFICATION_GUIDE = get_text_from_md("prompts/email_classification_guide.md")
 
-    def get_classification_response(self, email_body):
+    def get_classification(self, email_body):
 
         classfication_prompt = f"{self.CLASSFICATION_PROMPT_HEAD}; Detailed classification guidance: {self.CLASSFICATION_GUIDE}; Email body: {email_body}"
 
