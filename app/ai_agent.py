@@ -41,7 +41,7 @@ class AI_Agent():
 
             # Response generator
             '''
-            inputs: sender, subject, email_body, intent_class, intent_class_reasoning
+            inputs dict keys: customer_email, email_subject, email_body, email_intent_class, intent_class_reasoning
             Tasks:
                 - Check if required to get info from knowlege based (vector db)
                 - Create tickets if requires (for general inquaries, only generate repsonse with knwoledge base) 
@@ -51,7 +51,19 @@ class AI_Agent():
                     - Next steps for the customer inqury if a ticket is involved
                     - closing remarks with thanking or apology  
                 - Log activities including email data and actions taken
-                
+            outputs/actions:
+                - Ticket creation (Problem, intent class and reason, all email data)
+                - response email to the customer including all
+                - Activity logging
+
+            output json:
+            {
+            ticket_creation: YES
+            ticket_info: Problem, intent class and reason, all email data (within limited characters)
+            respond_email_subject: respond email subject
+            respond_email_body: respond_email_body
+            cutomer_email: customer email (or sender's email)
+            }
             '''
 
 
