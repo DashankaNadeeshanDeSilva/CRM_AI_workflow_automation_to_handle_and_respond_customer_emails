@@ -50,11 +50,11 @@ def reasoning_engine(email_data):
     reasoning_llm = Reasoning_LLM()
 
     # wrapper for reasoning LLM
-    def llm_wrapper(prompt_text):
+    def llm_reasoning(prompt_text):
         return reasoning_llm.get_llm_reasoning(prompt_text.to_string())
 
     # Langchain RunnableLambda object for llm
-    llm = RunnableLambda(llm_wrapper)
+    llm = RunnableLambda(llm_reasoning)
     
     '''Create prompt template'''
     template = "{reasoning_prompt_head} \n {email_data}"
