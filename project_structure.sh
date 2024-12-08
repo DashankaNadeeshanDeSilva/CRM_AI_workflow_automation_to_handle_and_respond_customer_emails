@@ -1,30 +1,17 @@
-meeting_translator_app/
-├── backend/                  # Backend service for transcription and translation
-│   ├── app/                  # Main application logic
-│   │   ├── __init__.py       # Package initializer
-│   │   ├── main.py           # Entry point of the backend API
-│   │   ├── config.py         # Configuration settings for the app
-│   │   ├── routers/          # API route handlers
-│   │   │   ├── real_time_main.py
-│   │   ├── services/         # Core business logic and services
-│   │   │   ├── transcription_service.py
-│   │   │   └── translation_service.py
-│   │   └── utils/            # Utility functions
-│   │       └── token_generator.py
-│   ├── Dockerfile            # Docker setup for the backend service
-│   ├── requirements.txt      # Python dependencies for the backend
-│   └── tests/                # Unit tests for the backend services
-│       ├── test_transcription.py
-│       └── test_translation.py
-├── frontend/                 # Frontend application for user interaction
-│   ├── public/               # Static files served by the frontend
-│   │   ├── index.html        # HTML file for the app interface
-│   │   ├── script.js         # Frontend JavaScript logic
-│   │   ├── styles.css        # Styling for the frontend UI
-│   └── Dockerfile            # Docker setup for the frontend service
-├── docker-compose.yml        # Docker Compose setup for the application
-├── .gitignore                # Git ignore rules
-├── README.md                 # Documentation for the project
-└── .github/                  # GitHub-specific files for CI/CD
-    └── workflows/
-        └── ci_cd_pipeline.yml  # GitHub Actions workflow for CI/CD
+email-webhook-app/
+├── app/
+│   ├── main.py                             # FastAPI entry point
+│   ├── ai_agent.py                         # AI_gent ochestration script
+│   ├── services/
+│   │   ├── email_service.py                # Email fetching logic
+│   │   ├── classify_service.py             # Classification using intent_classification.py
+│   ├── reasoning_engine/
+│   │   ├── reasoning_engine.py             # reasoning engine main
+│   │   ├── reasoning_utils.py          
+│   ├── prompts/
+│   │   ├── reasoning_engine_template.md    
+│   │   ├── intend-classification_guide.me 
+│   │   ├── intend-classification_head.me
+├── .env                                    # Environment variables
+├── requirements.txt                        # Python dependencies
+└── Dockerfile                              # Docker configuration
