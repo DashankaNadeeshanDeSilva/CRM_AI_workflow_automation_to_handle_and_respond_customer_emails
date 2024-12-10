@@ -20,7 +20,7 @@ class AI_Agent():
         - ticket creation (if required)
         '''
 
-        # Step 1: fetch emails
+        # Step 1: fetch emails {Tools}
         logger.info("Fetching emails")
         emails = self.email_processor.fetch_emails()
         # {"status": "success", "message": "Emails fetched successfully.", "emails": emails}
@@ -41,20 +41,31 @@ class AI_Agent():
 
             # Response generator
             '''
-            inputs dict keys: customer_email, email_subject, email_body, email_intent_class, intent_class_reasoning
-            Tasks:
-                - Check if required to get info from knowlege based (vector db)
-                - Create tickets if requires (for general inquaries, only generate repsonse with knwoledge base) 
-                - Generate response email including:
-                    - Initial greeting and overview answer
-                    - Actual response for the customer inquiry including ticket no if exists
-                    - Next steps for the customer inqury if a ticket is involved
-                    - closing remarks with thanking or apology  
-                - Log activities including email data and actions taken
-            outputs/actions:
-                - Ticket creation (Problem, intent class and reason, all email data)
-                - response email to the customer including all
-                - Activity logging
+            AI agent actions with tools:  create tickets, send emails and log activity in DB
+
+            Input data:
+                - inputs dict keys: customer_email, email_subject, email_body, email_intent_class, intent_class_reasoning
+                - Access the knowldege base (vector db) that contains information and data about products, prices, inventory, processes, policies and more.
+            Resoning Engine Tasks/Instructions:
+                1. Read the emal body and intend class & reason from input data
+                2. Think and decide following:
+                    - Think and decide if it requires to get info from knowlege base to generate the reply email. 
+                        - If reasonable and requires, gather knowledge from {KNOWLEDGE_BASE}.
+                    - Think and decide if it requires and reasonable to create tickets (for general inquaries except sales opportunities or issues/problems, only generate repsonse with knwoledge base)
+                        - If requires gather data to create ticket including problem/issue, intent class and reason, all email data (email id and email body)
+                3. Generate response email based on following:
+                    - Initial greeting and overview answer.
+                    - Actual response for the customer inquiry including ticket no if exists.
+                    - Next steps for the customer inqury if a ticket is involved.
+                    - closing remarks with thanking or apology.  
+                4 Log activities including email data and actions taken and store in {DB}.
+            Actions to take:
+                - Ticket creation, if required using {TICKET_TOOL}
+                - Generate a response email to the customer including knowledge gather earlier for that, and ticket number if one has been created, then 
+                - Activity logging into {DB}
+
+
+
 
             output json:
             {
