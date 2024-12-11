@@ -1,6 +1,7 @@
 from fastapi import FastAPI
-from scheduler import Scheduler
 import logging
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from ai_agent import AI_Agent
 
 logger = logging.getLogger("CRM AI Agent")
 
@@ -10,8 +11,23 @@ app = FastAPI(
     version="1.0.0",
 )
 
+# Act as the centralized task manager to orchestrate scheduler tasks.
+class Scheduler():
+    def __init__(self):
+        self.scheduler = AsyncIOScheduler()
+        self.ai_agent = AI_Agent()
+
+    def start(self): 
+        self.scheduler.add_job(self.ai_agent.run_ai_agent, 'interval', minutes=2)
+        self.scheduler.start()
+
+    def shutdown(self):
+        self.scheduler.shutdown()
+
+
 scheduler = Scheduler()
 
+# scheduler events
 @app.on_event("startup")
 def start_app():
     logger.info("Starting CRM AI Agent...")

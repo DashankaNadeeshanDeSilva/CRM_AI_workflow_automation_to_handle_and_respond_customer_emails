@@ -2,16 +2,20 @@ import chromadb
 from langchain.prompts import PromptTemplate
 from langchain.schema.runnable import RunnableLambda
 from langchain_core.runnables import RunnableSequence
-from utils import get_text_from_md
+from app.services.utils import get_text_from_md
+from app.knowledge_base.knowledge_base import Knowledge_Base
 
 # Retrive context from knowledge base
 def retrieve_context(input_data):
     email_body = input_data["email_body"]
-    collection = input_data["collection"]
+    #collection = input_data["collection"]
     intent = input_data["intent"]
     query = f"{email_body} Intent: {intent}"
-    results = collection.query(query_texts=[query], n_results=2) # have collection imported directly not via inputs
-    context = " ".join([doc for doc in results["documents"]])
+    
+    knowledge_base = Knowledge_Base()
+    context =knowledge_base.query(collection=knowledge_base.get_collection("company_knowledge_base"), query_texts=query)
+    #results = collection.query(query_texts=[query], n_results=2) # have collection imported directly not via inputs
+    #context = " ".join([doc for doc in results["documents"]])
     return context
 
 # Prompt to decide to create tickets 
@@ -29,10 +33,8 @@ def invoke_LLM(prompt, llm):
 # Interact with Database to Create a Ticket
 def create_ticket_in_db(input_data):
     #inputs to create entry in db: email_id, email_subject, email_body, intent, context
-    # Mock database call to create a entry
     # Replace this with actual DB interaction code
     ticket_id = "TICKET12345" # get from db
-    # if ticket is not created ticket_id= "Not created"
     return ticket_id
 
 # Prompt to decide to create tickets

@@ -16,7 +16,7 @@ from llm import LLM
 def reasoning_engine(email_data):
     # Reasoning chain
     chain = RunnableSequence(
-        # Retrive context
+        # Retrive context from RAG system
         RunnableLambda(lambda input_data_init:{
             **input_data_init,
             "context": retrieve_context(input_data_init)}
@@ -50,11 +50,9 @@ def reasoning_engine(email_data):
 
     ## Inputs
     # email_data = {"email_id":email_id, "email_subject": email_subject, "email_body": email_body, "intent": intent, "intent_reason": intent_reason}
-    # create LLM 
+    # LLM 
     llm = LLM()
-    # knowldgebase
-    knowledge_base = Knowldge_DB()
-    collection = knowledge_base.get_collection()
+    
 
     # Run the Chain
     input_data_init = {

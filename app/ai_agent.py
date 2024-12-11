@@ -4,6 +4,8 @@ from services.email_processor import EMail_Processor
 from services.intent_classification import Intent_Classifier
 from services.utils import extract_email_details
 
+from reasoning_engine.reasoning_engine import reasoning_engine
+
 
 logger = logging.getLogger("AI_Agent")
 
@@ -17,7 +19,7 @@ class AI_Agent():
         This function orchestrate the AI agent's workflow
         - fetch emails
         - classify intent
-        - ticket creation (if required)
+        - run reasoning engine (core functionalities of agent)
         '''
 
         # Step 1: fetch emails {Tools}
@@ -38,6 +40,8 @@ class AI_Agent():
             classification = self.indent_classifier.get_classification(email_body)
             intent_class = classification["Class"]
             intent_class_reasoning = classification["Reason"]
+
+            reply_email = reasoning_engine(email_data)
 
             # Response generator
             '''
