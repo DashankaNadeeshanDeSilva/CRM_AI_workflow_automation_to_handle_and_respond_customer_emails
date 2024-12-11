@@ -13,9 +13,7 @@ def retrieve_context(input_data):
     query = f"{email_body} Intent: {intent}"
     
     knowledge_base = Knowledge_Base()
-    context =knowledge_base.query(collection=knowledge_base.get_collection("company_knowledge_base"), query_texts=query)
-    #results = collection.query(query_texts=[query], n_results=2) # have collection imported directly not via inputs
-    #context = " ".join([doc for doc in results["documents"]])
+    context =knowledge_base.query(collection=knowledge_base.get_collection("company_knowledge_base"), query_texts=query) 
     return context
 
 # Prompt to decide to create tickets 
