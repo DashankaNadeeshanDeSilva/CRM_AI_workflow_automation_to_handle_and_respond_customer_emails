@@ -1,8 +1,9 @@
 import requests
 import json
-import os
 from dotenv import load_dotenv
-from utils import get_text_from_md
+from app.services.utils import get_text_from_md
+from pathlib import Path
+import os
 
 # Load the .env file
 load_dotenv()
@@ -15,12 +16,15 @@ class Intent_Classifier():
         self.INTEND_CLASS_LLM = os.getenv("INTEND_CLASS_LLM")
         self.OPENROUTER_URL = os.getenv("OPENROUTER_URL")
 
-        self.CLASSFICATION_PROMPT_HEAD = get_text_from_md("prompts/intent_classification_head.md")
-        self.CLASSFICATION_GUIDE = get_text_from_md("prompts/email_classification_guide.md")
+        # Get the root directory of the project
+        base_dir = Path(__file__).resolve().parent.parent
+
+        self.CLASSFICATION_PROMPT_HEAD = get_text_from_md(base_dir / "prompts/intent_classification_head.md")
+        self.CLASSFICATION_GUIDE = get_text_from_md(base_dir / "prompts/email_classification_guide.md")
 
     def get_classification(self, email_body):
 
-        classfication_prompt = f"{self.CLASSFICATION_PROMPT_HEAD}; Detailed classification guidance: {self.CLASSFICATION_GUIDE}; Email body: {email_body}"
+        classfication_prompt = f"{self.CLASSFICATION_PROMPT_HEAD}; \n Find detailed classification guidance: {self.CLASSFICATION_GUIDE}; \n Find email body: {email_body}"
 
         try:
             response = requests.post(
@@ -43,10 +47,11 @@ class Intent_Classifier():
             raise Exception(f"Request failed: {str(e)}") from e
 
         response_data = response.json()
-        response_content = response_data.get("choices", [{}])[0].get("message", {}).get("content", "No content found")
-        classification = dict(line.split(": ", 1) for line in response_content.split(", \n"))
-        
-        return classification
+        #response_content = response_data.get("choices", [{}])[0].get("message", {}).get("content", "No content found")
+
+        response_content = json.loads(response_data['choices'][0]['message']['content'])
+
+        return response_content
     
         '''
         except ValueError:

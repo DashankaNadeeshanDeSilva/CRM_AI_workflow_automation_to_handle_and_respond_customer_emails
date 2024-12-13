@@ -1,10 +1,10 @@
 import logging
 
-from services.email_processor import EMail_Processor
-from services.intent_classification import Intent_Classifier
-from services.utils import extract_email_details
+from app.services.email_processor import EMail_Processor
+from app.services.intent_classification import Intent_Classifier
+from app.services.utils import parse_email
 
-from reasoning_engine.reasoning_engine import reasoning_engine
+from app.reasoning_engine.reasoning_engine import reasoning_engine
 
 
 logger = logging.getLogger("AI_Agent")
@@ -12,7 +12,7 @@ logger = logging.getLogger("AI_Agent")
 class AI_Agent():
     def __init__(self):
         self.email_processor = EMail_Processor()
-        self.indent_classifier = Intent_Classifier()
+        self.intent_classifier = Intent_Classifier()
 
     def run_ai_agent(self):
         '''
@@ -34,14 +34,17 @@ class AI_Agent():
         # Step 2: indent classification
         for email in emails["emails"]:
             logger.info(f"Processing email")
-            sender, subject, email_body = extract_email_details(email)
+            email_data = parse_email(email)
             
             # get intent classification
-            classification = self.indent_classifier.get_classification(email_body)
-            intent_class = classification["Class"]
-            intent_class_reasoning = classification["Reason"]
+            classification = self.intent_classifier.get_classification(email_data["email_body"])
 
-            reply_email = reasoning_engine(email_data)
+            
+            
+            email_data.update(classification)
+
+
+            #reply_email = reasoning_engine(email_data)
 
             # Response generator
             '''

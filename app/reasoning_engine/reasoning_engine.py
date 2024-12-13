@@ -6,10 +6,9 @@ from langchain.prompts import PromptTemplate
 from langchain.schema.runnable import RunnableLambda
 from langchain_core.runnables import RunnableSequence
 
-from utils import get_text_from_md
-from reasoning_engine_helpers import *
-from app.services.knowledge_base import Knowldge_DB
-from llm import LLM
+from app.services.utils import get_text_from_md
+from app.reasoning_engine.reasoning_engine_helpers import *
+from app.reasoning_engine.llm import LLM
 
 
 # Reasoning engine chain
@@ -56,16 +55,22 @@ def reasoning_engine(email_data):
 
     # Run the Chain
     input_data_init = {
-        "email_body": "I need help with my product.",
-        "collection": collection,
-        "intent": "Product Support",
+        "email_id": "dashankadesilva@gmail.com",
+        "email_subject": "Help with the product I ordered",
+        "email_body": "Hello, I ordered a TurboDry 3000 hair dryer a week ago. It still has not delivered though it suppose to be delivered in 3 days. Can you please help me with this. The order number is LD3362763. Thank you. Best Dashnaka",
+        "intent": "Order Inquiries",
+        "intent_reason": "The customer's order havent recieved in due time and looking for it",
         "llm": llm  # Pass the LLM object
     }
+
+    input_data_init = email_data
+
 
     reply_email = chain.invoke(input_data_init)
 
     return reply_email
 
+"""
 def reasoning_engine_old(email_data):
     '''Create LLM for reasoning using wrapper and RunnableLambda object'''
     reasoning_llm = Reasoning_LLM()
@@ -94,3 +99,4 @@ def reasoning_engine_old(email_data):
 
     # response should match reasoning engine output criteria
     # return reasoning_engine_response
+"""

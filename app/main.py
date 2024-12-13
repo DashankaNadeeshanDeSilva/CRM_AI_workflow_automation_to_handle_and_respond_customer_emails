@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 import logging
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from ai_agent import AI_Agent
+from app.ai_agent import AI_Agent
 
 logger = logging.getLogger("CRM AI Agent")
 
@@ -18,7 +18,7 @@ class Scheduler():
         self.ai_agent = AI_Agent()
 
     def start(self): 
-        self.scheduler.add_job(self.ai_agent.run_ai_agent, 'interval', minutes=2)
+        self.scheduler.add_job(self.ai_agent.run_ai_agent, 'interval', seconds=5)
         self.scheduler.start()
 
     def shutdown(self):
