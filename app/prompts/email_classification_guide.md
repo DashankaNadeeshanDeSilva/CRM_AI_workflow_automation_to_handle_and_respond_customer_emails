@@ -25,8 +25,7 @@
 - Feedback on the usability or design of products.
 - Reviews of products, customer service, or support interactions.
 
-5. Returns, Exchanges, and Refund Requests
-(Customers want to return, exchange, or request refunds after purchase)
+5. Returns, Exchanges, and Refund Requests (Customers want to return, exchange, or request refunds after purchase)
 - Initiating returns or exchanges due to dissatisfaction or defects.
 - Requesting refunds after returning a product.
 - Refund requests unrelated to returns (e.g., incorrect charges, billing disputes).

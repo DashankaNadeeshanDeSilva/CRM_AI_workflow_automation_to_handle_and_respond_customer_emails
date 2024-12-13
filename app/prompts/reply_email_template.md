@@ -10,9 +10,11 @@ Generate a reply email to customer who sent an email to us based on following pr
 And also use the following guide:
 Generate response email based on following:
 - Initial greeting and overview answer.
-- Actual response for the customer inquiry including ticket no if exists.
+- Actual response for the customer inquiry
+- Mention ticket no if exists.
 - Next steps for the customer inqury if a ticket is involved.
 - closing remarks with thanking or apology.
+- At the end mention the email is from "Customer Sevrice Team" (after best regards).
 
 provide the generated reply email only using following json format:
-{"reply_email": "generated reply email"} 
+{{"reply_email": "generated reply email"}} 

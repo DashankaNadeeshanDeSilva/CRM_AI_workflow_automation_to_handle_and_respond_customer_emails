@@ -37,14 +37,21 @@ class AI_Agent():
             email_data = parse_email(email)
             
             # get intent classification
-            classification = self.intent_classifier.get_classification(email_data["email_body"])
+            #classification = self.intent_classifier.get_classification(email_data["email_body"])
 
             
             
-            email_data.update(classification)
+            #email_data.update(classification)
+
+            email_data = {'email_id': 'Dashanka Nadeeshan <dashankadesilva@gmail.com>', 
+                         'email_subject': 'Defect with product and claiming warranty.', 
+                         'email_body': "Dear Sir/Madam,\r\n\r\nI bought a TV from you last week (ordered online). I have been using it for\r\none month now. However, it suddenly stopped working. I want to repair this\r\nor get a new one as a replacement since it's within the warranty period.\r\nThank you.\r\n\r\n-- \r\nBest Regards,\r\n*Dashanka Nadeeshan De Silva.*\r\n", 
+                         'intent': 'Technical Support and Warranty', 
+                         'reason': 'The customer is reporting an issue with their product (the TV stopped working) and is seeking assistance or claiming warranty within the warranty period.'}
 
 
-            #reply_email = reasoning_engine(email_data)
+            reply_email = reasoning_engine(email_data)
+            #print(reply_email)
 
             # Response generator
             '''
