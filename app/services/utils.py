@@ -36,6 +36,9 @@ def parse_email(raw_email_content):
     
     # Extract the email subject
     subject = email_message['Subject']
+
+    # Extract Message-ID header
+    message_id = email_message["Message-ID"]  
     
     # Extract the email body
     body = None
@@ -49,7 +52,7 @@ def parse_email(raw_email_content):
         # If not multipart, directly get the payload
         body = email_message.get_content()
 
-    email_data = {"email_id": sender, "email_subject": subject, "email_body": body}
+    email_data = {"email_id": sender, "email_subject": subject, "email_body": body, "message_id": message_id}
     
     return email_data
 

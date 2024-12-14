@@ -48,7 +48,6 @@ class Intent_Classifier():
 
         response_data = response.json()
         #response_content = response_data.get("choices", [{}])[0].get("message", {}).get("content", "No content found")
-
         response_content = json.loads(response_data['choices'][0]['message']['content'])
 
         return response_content

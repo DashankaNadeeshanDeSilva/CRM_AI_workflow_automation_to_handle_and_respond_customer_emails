@@ -57,6 +57,20 @@ class EMail_Processor():
 
         except Exception as e:
             raise Exception(f"Error fetching emails: {str(e)}")
+        
+
+    def send_email(self, recipient, subject, body):
+        message = MIMEMultipart()
+        message["From"] = self.email_address
+        message["To"] = recipient
+        message["Subject"] = subject
+
+        
+        message.attach(MIMEText(body, "plain"))
+
+        with smtplib.SMTP_SSL(self.smtp_server) as server:
+            server.login(self.email, self.password)
+            server.send_message(message)
 
 
 

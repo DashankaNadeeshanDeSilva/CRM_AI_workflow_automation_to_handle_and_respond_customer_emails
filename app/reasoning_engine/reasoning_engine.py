@@ -47,12 +47,6 @@ def reasoning_engine(email_data):
         )
     )
 
-    ## Inputs
-    # email_data = {"email_id":email_id, "email_subject": email_subject, "email_body": email_body, "intent": intent, "intent_reason": intent_reason}
-    # LLM 
-    #llm = LLM()
-    
-
     # Run the Chain
     input_data_init = {
         "email_id": "dashankadesilva@gmail.com",
@@ -62,17 +56,9 @@ def reasoning_engine(email_data):
         "reason": "The customer's order havent recieved in due time and looking for it",
     }
 
-    input_data_init = email_data
-
-
+    #input_data_init = email_data
     output = chain.invoke(input_data_init)
-    print()
-    print()
     reply_email = output["reply_email"]
-    print(reply_email)
-    print()
-    print()
-    exit()
 
     return reply_email
 
