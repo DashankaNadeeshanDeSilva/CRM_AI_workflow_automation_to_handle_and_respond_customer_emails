@@ -5,7 +5,7 @@ from app.services.intent_classification import Intent_Classifier
 from app.services.utils import parse_email
 
 from app.reasoning_engine.reasoning_engine import reasoning_engine
-#from app.services.log_activity import log_activity
+from app.services.log_activity import log_activity_to_google_sheet
 
 
 logger = logging.getLogger("AI_Agent")
@@ -52,7 +52,7 @@ class AI_Agent():
             self.email_processor.reply_email(email_data)
             
             # Log the activity
-            #log_activity(email_data)
+            log_activity_to_google_sheet(email_data)  # Log activity to a Google Sheet
 
             """
             TEST
