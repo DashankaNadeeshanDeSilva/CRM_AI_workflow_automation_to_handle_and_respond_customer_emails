@@ -48,17 +48,20 @@ def reasoning_engine(email_data):
     )
 
     # Run the Chain
-    input_data_init = {
+    '''input_data_init = {
         "email_id": "dashankadesilva@gmail.com",
         "email_subject": "Help with the product I ordered",
         "email_body": "Hello, I ordered a TurboDry 3000 hair dryer a week ago. It still has not delivered though it suppose to be delivered in 3 days. Can you please help me with this. The order number is LD3362763. Thank you. Best Dashnaka",
         "intent": "Order Inquiries",
         "reason": "The customer's order havent recieved in due time and looking for it",
-    }
+    }'''
 
-    #input_data_init = email_data
+    input_data_init = email_data
     output = chain.invoke(input_data_init)
-    reply_email = output["reply_email"]
+    if output["reply_email"]: 
+        reply_email = output["reply_email"] 
+    
+    else: reply_email = "Reply email is not available"
 
     return reply_email
 

@@ -18,7 +18,7 @@ def retrieve_context(input_data):
     #knowledge_base = Knowledge_Base()
     #context =knowledge_base.query(collection=knowledge_base.get_collection("company_knowledge_base"), query_texts=query)
 
-    context = "This is related to order rlated inquires which should be hanlded by sales department and the customer should be contacted again after checking delivery status of the order."
+    context = "This is related to order related inquires which should be hanlded by Warranty and Services department. The customer should be contacted by the department based on ticket number created and additionally the customer is asked to provide the order or bill (sales) number if not given already."
 
     return context
 

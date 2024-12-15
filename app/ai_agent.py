@@ -5,6 +5,7 @@ from app.services.intent_classification import Intent_Classifier
 from app.services.utils import parse_email
 
 from app.reasoning_engine.reasoning_engine import reasoning_engine
+#from app.services.log_activity import log_activity
 
 
 logger = logging.getLogger("AI_Agent")
@@ -19,7 +20,9 @@ class AI_Agent():
         This function orchestrate the AI agent's workflow
         - fetch emails
         - classify intent
-        - run reasoning engine (core functionalities of agent)
+        - run reasoning engine
+        - reply email
+        - log activity
         '''
 
         # Step 1: fetch emails {Tools}
@@ -34,13 +37,25 @@ class AI_Agent():
         # Step 2: indent classification
         for email in emails["emails"]:
             logger.info(f"Processing email")
+            # get email data
             email_data = parse_email(email)
             
-            # get intent classification
+            # Get intent classification
             classification = self.intent_classifier.get_classification(email_data["email_body"])
             email_data.update(classification)
+            
+            # Use the reasoning engine to generate reply
+            reply_email = reasoning_engine(email_data)
+            email_data['reply_email'] = reply_email
+             
+            # Send reply to the customer
+            self.email_processor.reply_email(email_data)
+            
+            # Log the activity
+            #log_activity(email_data)
 
             """
+            TEST
             email_data = {'email_id': 'Dashanka Nadeeshan <dashankadesilva@gmail.com>', 
                          'email_subject': 'Defect with product and claiming warranty.', 
                          'email_body': "Dear Sir/Madam,\r\n\r\nI bought a TV from you last week (ordered online). I have been using it for\r\none month now. However, it suddenly stopped working. I want to repair this\r\nor get a new one as a replacement since it's within the warranty period.\r\nThank you.\r\n\r\n-- \r\nBest Regards,\r\n*Dashanka Nadeeshan De Silva.*\r\n", 
@@ -48,12 +63,7 @@ class AI_Agent():
                          'reason': 'The customer is reporting an issue with their product (the TV stopped working) and is seeking assistance or claiming warranty within the warranty period.'}
             """
 
-            reply_email = reasoning_engine(email_data)
-            
-            ## Send reply to the customer
-            self.email_processor.reply_emails(email_id, email_subject, reply_email)
 
-            # Response generator
             '''
             AI agent actions with tools:  create tickets, send emails and log activity in DB
 

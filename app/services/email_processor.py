@@ -9,10 +9,10 @@ load_dotenv() # load env var and keys
 
 class EMail_Processor():
     def __init__(self):
-        self.email_address = os.getenv("EMAIL_ADDRESS")
+        self.email_address = os.getenv("EMAIL_ADDRESS") # dashankaaitesting@gmail.com
         self.email_password = os.getenv("EMAIL_PASSWORD")
         self.imap_server = os.getenv("IMAP_SERVER")
-        self.smtp_server = os.getenv("SMTP_SEVRVER")
+        self.smtp_server = os.getenv("SMTP_SERVER")
 
     
     def connect_imap(self):
@@ -59,17 +59,32 @@ class EMail_Processor():
             raise Exception(f"Error fetching emails: {str(e)}")
         
 
-    def send_email(self, recipient, subject, body):
+    def reply_email(self, email_data):
+        '''send reply email to fetched and processed emails'''
         message = MIMEMultipart()
-        message["From"] = self.email_address
-        message["To"] = recipient
-        message["Subject"] = subject
-
         
-        message.attach(MIMEText(body, "plain"))
+        message["From"] = self.email_address # dashankaaitesting@gmail.com
+        message["To"] = email_data["email_id"] # customer email
+        message["Subject"] = f"Re: {email_data['email_subject']}"
+        email_body = email_data["reply_email"]
+        
+        if email_data["message_id"]:
+            message_id = email_data["message_id"]
+            references = email_data["message_id"]
+        else:
+            message_id=None
+            references=None
+        
+        # Add threading headers
+        if message_id:
+            message["In-Reply-To"] = message_id
+        if references:
+            message["References"] = references
+
+        message.attach(MIMEText(email_body, "plain"))
 
         with smtplib.SMTP_SSL(self.smtp_server) as server:
-            server.login(self.email, self.password)
+            server.login(self.email_address, self.email_password)
             server.send_message(message)
 
 
