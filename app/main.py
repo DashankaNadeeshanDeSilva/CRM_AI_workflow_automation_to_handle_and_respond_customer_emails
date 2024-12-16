@@ -11,7 +11,7 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# Act as the centralized task manager to orchestrate scheduler tasks.
+# Centralized task manager to orchestrate scheduler tasks.
 class Scheduler():
     def __init__(self):
         self.scheduler = AsyncIOScheduler()

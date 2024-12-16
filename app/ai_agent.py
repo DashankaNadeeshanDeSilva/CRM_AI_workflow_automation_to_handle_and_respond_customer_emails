@@ -16,16 +16,8 @@ class AI_Agent():
         self.intent_classifier = Intent_Classifier()
 
     def run_ai_agent(self):
-        '''
-        This function orchestrate the AI agent's workflow
-        - fetch emails
-        - classify intent
-        - run reasoning engine
-        - reply email
-        - log activity
-        '''
-
-        # Step 1: fetch emails {Tools}
+        '''Orchestrate the AI agent's workflow'''
+        # fetch emails {Tools}
         logger.info("Fetching emails")
         emails = self.email_processor.fetch_emails()
         # {"status": "success", "message": "Emails fetched successfully.", "emails": emails}
@@ -34,7 +26,6 @@ class AI_Agent():
             logger.info("No new emails to process")
             return
 
-        # Step 2: indent classification
         for email in emails["emails"]:
             logger.info(f"Processing email")
             # get email data
@@ -51,8 +42,8 @@ class AI_Agent():
             # Send reply to the customer
             self.email_processor.reply_email(email_data)
             
-            # Log the activity
-            log_activity_to_google_sheet(email_data)  # Log activity to a Google Sheet
+            # Log the activity to Gllgle sheet
+            log_activity_to_google_sheet(email_data)
 
             """
             TEST

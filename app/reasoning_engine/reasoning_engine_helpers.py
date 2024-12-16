@@ -5,21 +5,19 @@ from langchain_core.runnables import RunnableSequence
 from app.services.utils import get_text_from_md
 from app.knowledge_base.knowledge_base import Knowledge_Base
 from app.reasoning_engine.llm import LLM
+from app.services.create_ticket import Database_Manager
 from pathlib import Path
 import os
 
 # Retrive context from knowledge base
 def retrieve_context(input_data):
     email_body = input_data["email_body"]
-    #collection = input_data["collection"]
     intent = input_data["intent"]
     query = f"{email_body} Intent: {intent}"
     
-    #knowledge_base = Knowledge_Base()
-    #context =knowledge_base.query(collection=knowledge_base.get_collection("company_knowledge_base"), query_texts=query)
-
-    context = "This is related to order related inquires which should be hanlded by Warranty and Services department. The customer should be contacted by the department based on ticket number created and additionally the customer is asked to provide the order or bill (sales) number if not given already."
-
+    knowledge_base = Knowledge_Base()
+    knowledge_base_collection = knowledge_base.get_collection()
+    context =knowledge_base.query(collection=knowledge_base_collection, query=query)
     return context
 
 # Prompt to decide to create tickets 
@@ -39,9 +37,8 @@ def invoke_LLM(prompt):
 
 # Interact with Database to Create a Ticket
 def create_ticket_in_db(input_data):
-    #inputs to create entry in db: email_id, email_subject, email_body, intent, context
-    # Replace this with actual DB interaction code
-    ticket_id = "TICKET12345" # get from db
+    db_manager = Database_Manager()
+    ticket_id = db_manager.add_ticket(input_data)
     return ticket_id
 
 # Prompt to decide to create tickets
