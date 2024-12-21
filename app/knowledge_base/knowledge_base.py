@@ -1,7 +1,7 @@
 import chromadb
 
 class Knowledge_Base():
-    def __init__(self, db_path="vector_db/"):
+    def __init__(self, db_path="app/knowledge_base/vector_db/"):
         self.db_path = db_path
         self.client = chromadb.PersistentClient(path=self.db_path)
 

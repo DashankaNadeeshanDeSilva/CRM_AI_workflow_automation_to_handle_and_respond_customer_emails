@@ -28,12 +28,13 @@ def log_activity_to_google_sheet(email_data, sheet_name="CRM AI Agent Activity L
 
         # Prepare the data to append (ensure order matches the sheet's columns)
         row = [
-            email_data.get("recipient", "N/A"),
-            email_data.get("subject", "N/A"),
-            email_data.get("body", "N/A"),
+            email_data.get("email_id", "N/A"),
+            email_data.get("email_subject", "N/A"),
+            email_data.get("email_body", "N/A"),
             email_data.get("message_id", "N/A"),
             email_data.get("intent", "N/A"),
             email_data.get("reply_email", "N/A"),
+            email_data.get("ticket_no", "N/A"),
             email_data.get("status", "Replied to the customer")  # Add a status column
         ]
 

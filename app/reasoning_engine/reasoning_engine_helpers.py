@@ -14,7 +14,6 @@ def retrieve_context(input_data):
     email_body = input_data["email_body"]
     intent = input_data["intent"]
     query = f"{email_body} Intent: {intent}"
-    
     knowledge_base = Knowledge_Base()
     knowledge_base_collection = knowledge_base.get_collection()
     context =knowledge_base.query(collection=knowledge_base_collection, query=query)
