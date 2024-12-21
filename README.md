@@ -13,22 +13,32 @@ The goal is to develop an AI agent that can:
 4. Log actions and maintain reports.
 
 ## AI Agent Workflow
+
+![AI_Agent_workflow](images/ai_agent_workflow.png)
+
 ### Input Data:
-- Emails fetched from the email client.
+- The AI agent checks emails in regulare intervals
+- Once new emails are recived, they are fetched from the email client.
 
 ### Reasoning Engine Tasks:
 1. Read the email body to classify intent and reason from the input data.
 2. Decide actions using an LLM:
-    - Determine if knowledge from the vector database is required to generate a reply email.
-    - Identify if a ticket should be created (e.g., for general inquiries).
+    - Determine if knowledge from the vector database (Chromadb) is required to generate a reply email.
+    - Identify if a ticket should be created and creat tickets in remote SQL Database.
     - Gather relevant information for tickets, including problem description, intent class, reason, and email metadata.
 3. Generate a response email using LLM based on the email body, intent, and gathered context (including ticket numbers if created).
-4. Log activities in a database (e.g., Google Sheets).
+4. Log activities in Google Sheets.
 
 ### Actions:
 - Create tickets via a remote database connection if required.
 - Send response emails to customers, including the gathered context and ticket number if applicable.
 - Log activities into a database for tracking and reporting.
+
+### Tools Involved:
+- Email client: fetching emails and replying them
+- Vector Database:  Extracting context from knowledge base
+- Remote SQL Database: Create tickets
+- Google Sheets: Log AI Agent activities 
 
 ## Project Structure
 - `app/`: Contains the application code.
@@ -36,14 +46,15 @@ The goal is to develop an AI agent that can:
 - `.env`: Stores environment variables.
 - `Dockerfile`: Used to containerize the application.
 
-## Dependencies
+### Main Functionality Dependencies
 - Python 3.10
-- FastAPI
-- Uvicorn
-- OpenAI LLM or similar models
-- Google Sheets API
+- FastAPI: 
+- Docker: Deploy containerised application
+- LangChain: To create LLM, prompt and function chains
+- OpenRouter API for LLMs: LLM invokation are done with API endopoints (Llama 3.2 30b)
+- Google APIs: Build connections to Google Gmail client and app api to Google Sheets 
 
-## Instructions to Run the Project
+## How to Run
 ### Using Docker
 1. Build the Docker image:
    ```bash
