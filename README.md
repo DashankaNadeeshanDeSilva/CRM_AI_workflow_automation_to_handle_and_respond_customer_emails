@@ -1,4 +1,4 @@
-# CRM-AI-Agent-to-handle-and-respond-customer-emails
+# CRM AI Agent to handle and respond customer emails
 
 AI agent to handle and respond to customer emails using an internal knowledge base.
 
