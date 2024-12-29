@@ -1,9 +1,9 @@
-# CRM AI Agent to handle and respond customer emails
+# CRM AI Agent to handle and respond to customer emails
 
 AI agent to handle and respond to customer emails using an internal knowledge base.
 
 ## Motivation
-Businesses often receive a large volume of emails from customers inquiring about products, reporting issues, or requesting assistance. This requires significant effort to classify, respond, or escalate inquiries efficiently. This project leverages AI to automate email management, providing timely responses and improving customer satisfaction.
+Businesses often receive many emails from customers inquiring about products, reporting issues, or requesting assistance. Classifying, responding to, or escalating inquiries efficiently requires significant effort. This project leverages AI to automate email management, providing timely responses and improving customer satisfaction.
 
 ## Goal and Objectives
 The goal is to develop an AI agent that can:
@@ -17,26 +17,26 @@ The goal is to develop an AI agent that can:
 ![AI_Agent_workflow](images/ai_agent_workflow.png)
 
 ### Input Data:
-- The AI agent checks emails in regulare intervals
-- Once new emails are recived, they are fetched from the email client.
+- The AI agent checks emails in regular intervals
+- Once new emails are received, they are fetched from the email client.
 
 ### Reasoning Engine Tasks:
 1. Read the email body to classify intent and reason from the input data.
 2. Decide actions using an LLM:
     - Determine if knowledge from the vector database (Chromadb) is required to generate a reply email.
-    - Identify if a ticket should be created and creat tickets in remote SQL Database.
-    - Gather relevant information for tickets, including problem description, intent class, reason, and email metadata.
+    - Identify if a ticket should be created and create tickets in a remote SQL Database.
+    - Gather relevant ticket information, including problem description, intent class, reason, and email metadata.
 3. Generate a response email using LLM based on the email body, intent, and gathered context (including ticket numbers if created).
 4. Log activities in Google Sheets.
 
 ### Actions:
 - Create tickets via a remote database connection if required.
-- Send response emails to customers, including the gathered context and ticket number if applicable.
+- Send customer response emails, including the gathered context and ticket number if applicable.
 - Log activities into a database for tracking and reporting.
 
 ### Tools Involved:
-- Email client: fetching emails and replying them
-- Vector Database:  Extracting context from knowledge base
+- Email client: fetching emails and replying to them
+- Vector Database:  Extracting context from the knowledge base
 - Remote SQL Database: Create tickets
 - Google Sheets: Log AI Agent activities 
 
@@ -47,12 +47,12 @@ The goal is to develop an AI agent that can:
 - `Dockerfile`: Used to containerize the application.
 
 ### Main Functionality Dependencies
-- Python 3.10
-- FastAPI: 
+- Python 3.10 and surrounding libs
+- FastAPI: Application
 - Docker: Deploy containerised application
 - LangChain: To create LLM, prompt and function chains
 - OpenRouter API for LLMs: LLM invokation are done with API endopoints (Llama 3.2 30b)
-- Google APIs: Build connections to Google Gmail client and app api to Google Sheets 
+- Google APIs: Build connections to Google Gmail client and app API to Google Sheets 
 
 ## How to Run
 ### Using Docker
@@ -66,7 +66,7 @@ The goal is to develop an AI agent that can:
    ```
 3. Access the application at `http://localhost:8000`.
 
-### Without Docker
+### Without Docker (locally)
 1. Install dependencies:
    ```bash
    pip install -r requirements.txt
