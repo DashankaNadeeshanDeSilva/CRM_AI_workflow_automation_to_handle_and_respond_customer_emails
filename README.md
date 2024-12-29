@@ -51,11 +51,12 @@ The goal is to develop an AI agent that can:
 - FastAPI: Application
 - Docker: Deploy containerised application
 - LangChain: To create LLM, prompt and function chains
-- OpenRouter API for LLMs: LLM invokation are done with API endopoints (Llama 3.2 30b)
+- OpenRouter API (keys) for LLMs: LLM invokation are done with API endopoints (Llama 3.2 30b)
 - Google APIs: Build connections to Google Gmail client and app API to Google Sheets 
 
-## How to Run
-### Using Docker
+## How to Run --TODO--
+### Run Locally
+#### Using Docker
 1. Build the Docker image:
    ```bash
    docker build -t crm-ai-agent .
@@ -66,7 +67,7 @@ The goal is to develop an AI agent that can:
    ```
 3. Access the application at `http://localhost:8000`.
 
-### Without Docker (locally)
+#### Without Docker
 1. Install dependencies:
    ```bash
    pip install -r requirements.txt
@@ -75,6 +76,9 @@ The goal is to develop an AI agent that can:
    ```bash
    uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
    ```
+### Run in Cloud
+
+--TODO--
 
 ## Future Work
 - Enhance the knowledge base with additional sources.
