@@ -46,7 +46,7 @@ The goal is to develop an AI agent that can:
 - `.env`: Stores environment variables.
 - `Dockerfile`: Used to containerize the application.
 
-### Main Functionality Dependencies
+### Main Technologies Involved
 - Python 3.10 and surrounding libs
 - FastAPI: Application
 - Docker: Deploy containerised application
@@ -55,7 +55,9 @@ The goal is to develop an AI agent that can:
 - Google APIs: Build connections to Google Gmail client and app API to Google Sheets 
 
 ## How to Run --TODO--
+
 ### Run Locally
+
 #### Using Docker
 1. Build the Docker image:
    ```bash
@@ -76,8 +78,9 @@ The goal is to develop an AI agent that can:
    ```bash
    uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
    ```
-### Run in Cloud
+### Run in Cloud (Deploy)
 
+#### Deploy in AWS EC2 via CI/CD with GitHub workflow
 --TODO--
 
 ## Future Work
