@@ -80,8 +80,14 @@ The goal is to develop an AI agent that can:
    ```
 ### Run in Cloud (Deploy)
 
-#### Deploy in AWS EC2 via CI/CD with GitHub workflow
---TODO--
+#### Deploy in Cloud (AWS EC2 instance) 
+Prerequisites
+- AWS EC2 Instance: Ensure you have an EC2 instance running with SSH access.
+- SSH Key Pair: A key pair (.pem file) associated with your EC2 instance.
+
+#### Automated deployment with CI/CD pipeline
+
+#### Manual deployment with Docker
 
 ## Future Work
 - Enhance the knowledge base with additional sources.
