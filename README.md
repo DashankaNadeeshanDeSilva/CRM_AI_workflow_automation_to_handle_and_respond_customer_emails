@@ -84,10 +84,11 @@ The goal is to develop an AI agent that can:
 Prerequisites
 - AWS EC2 Instance: Ensure you have an EC2 instance running with SSH access.
 - SSH Key Pair: A key pair (.pem file) associated with your EC2 instance.
+- Docker and Docker Compose: Installed on your local machine and EC2 instance.
 
-#### Automated deployment with CI/CD pipeline
+#### 1. Automated deployment with CI/CD pipeline
 
-#### Manual deployment with Docker
+#### 2. Manual deployment with Docker
 
 ## Future Work
 - Enhance the knowledge base with additional sources.
