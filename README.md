@@ -2,10 +2,9 @@
 
 AI agent to handle and respond to customer emails using an internal knowledge base.
 
-## Motivation
+## Motivation and Goals
 Businesses often receive many emails from customers inquiring about products, reporting issues, or requesting assistance. Responding to, or escalating inquiries efficiently requires significant effort. This project leverages AI to automate email management, providing timely responses and improving customer satisfaction.
 
-## Goal and Objectives
 The goal is to develop an AI agent that can:
 1. Read and classify emails based on intent or actionable categories.
 2. Generate responses using a company knowledge base.
@@ -16,11 +15,14 @@ The goal is to develop an AI agent that can:
 
 ![AI_Agent_workflow](images/ai_agent_workflow.png)
 
-### Input Data:
-- The AI agent checks emails in regular intervals
+### Input to the AI Agent:
+- The AI agent checks emails in regular intervals using a scheduler.
 - Once new emails are received, they are fetched from the client.
 
 ### Reasoning Engine Tasks:
+
+#### The reasoning engine is responisble for core functionalities of the  AI Agent.
+
 1. Read the email body to classify intent and reason from the input data.
 2. Decide actions using an LLM:
     - Determine if knowledge from the vector database (Chromadb) is required to generate a reply email.
@@ -35,24 +37,18 @@ The goal is to develop an AI agent that can:
 - Log activities into a database for tracking and reporting.
 
 ### Tools Involved:
-- Email client: fetching emails and replying to them
-- Vector Database:  Extracting context from the knowledge base
-- Remote SQL Database: Create tickets
-- Google Sheets: Log AI Agent activities 
-
-## Project Structure
-- `app/`: Contains the application code.
-- `requirements.txt`: Lists the dependencies.
-- `.env`: Stores environment variables.
-- `Dockerfile`: Used to containerize the application.
+- Email client: fetching emails and replying to them.
+- Vector Database:  Extracting context from the knowledge base.
+- Remote SQL Database: Create tickets.
+- Google Sheets: Log AI Agent activities .
 
 ### Main Technologies Involved
-- Python 3.10 and surrounding libs
-- FastAPI: Application
-- Docker: Deploy containerised application
-- LangChain: To create LLM, prompt and function chains
-- OpenRouter API (keys) for LLMs: LLM invokation are done with API endopoints (Llama 3.2 30b)
-- Google APIs: Build connections to Google Gmail client and app API to Google Sheets 
+- Python 3.10 and related libs.
+- FastAPI: REST API Application.
+- Docker: Deploy containerised application.
+- LangChain: To create LLM, prompt and tool chain.
+- OpenRouter API (keys) for LLMs: LLM invokation are done with API endopoints (Llama 3.2 30b).
+- Google APIs: Build connections to Google Gmail client and app API to Google Sheets.
 
 ## How to Run --TODO--
 
@@ -90,21 +86,35 @@ Prerequisites
 
 #### 1. Deployment (automated) with CI/CD pipeline (GitHub Actions)
 
-1. Configure SSH access: Get private key file (.pem) and to GitHub secret `EC2_SSH_KEY`
+1. Configure SSH access: Get Key Pair credentials file (.pem) and add it as a GitHub secret named `EC2_SSH_KEY`
 2. Setup GitHub Secrets: Add `EC2_HOST` (Public IP or DNS of the EC2 instance) and `EC2_USER` (SSH username such as `ubuntu` for Ubuntu instance)
-3.  When changes are pushed to the `deploy` branch, Github Actions workflow is triggered (located in `.github/workflows/deploy.yml`).
+3.  When changes are pushed to the `deploy` branch (or your desired branch), Github Actions workflow is triggered (located in `.github/workflows/deploy.yml`).
 
-#### Additional notes
-The ci/cd pipeline performs following actions:
-- Checks out to code/repo.
-- Sets up SSH access to EC2 instance.
-- Copies files to the EC2 instance (Volumes).
-- Installs Docker and Docker Compose on the EC2 instance.
-- Deploys the AI Agent application using Docker Compose.
+#### The ci/cd pipeline performs following actions:
+- Check out to code/repo.
+- Set up SSH access to EC2 instance.
+- Copy files to the EC2 instance (Volumes).
+- Install Docker on the EC2 instance.
+- Deploy the AI Agent by building (image) and running Docker container.
 
-#### 2. Deployment (manual) with Docker:
+#### 2. Deployment (manual) with Docker (with Linux/macOS):
 
-
+1. Create an IAM Role with `AmazonEC2ContainerRegistryFullAccess` policy and attach with EC2 instance.
+2. Configure the local machine: Adjust permissions of the Key Pair file (navigate to its location) .
+   ```bash 
+   chmod 400 your-key.pem
+   ``` 
+3. Connect to EC2 instance using SSH.
+   ```bash 
+   ssh -i "your-key.pem" ubuntu@<EC2-Public-IP>
+   ``` 
+4. Navigate to project in your local machine and transfer files to the EC2 instance.
+   ```bash 
+   scp -i "your-key.pem" -r <my_project> ubuntu@<EC2-Public-IP>:/home/ubuntu/
+   ```
+5. Verify transfered files by SSH back to EC2 instance and check in `/home/ubuntu` dir.
+6. Build and Run the Dockerized App: Build the Docker images and run the Docker container.
+7. The AI Agent it now running in the EC2 instance.
 
 ## Future Work
 - Enhance the knowledge base with additional sources.
