@@ -2,7 +2,7 @@
 
 AI agent to handle and respond to customer emails using an internal knowledge base.
 
-## Motivation and Goals
+## 01. Motivation and Goals
 Businesses often receive many emails from customers inquiring about products, reporting issues, or requesting assistance. Responding to, or escalating inquiries efficiently requires significant effort. This project leverages AI to automate email management, providing timely responses and improving customer satisfaction.
 
 The goal is to develop an AI agent that can:
@@ -11,7 +11,7 @@ The goal is to develop an AI agent that can:
 3. Escalate by creating tickets when necessary.
 4. Log actions and maintain reports.
 
-## AI Agent Workflow
+## 02. AI Agent Workflow
 
 ![AI_Agent_workflow](images/ai_agent_workflow.png)
 
@@ -50,7 +50,7 @@ The goal is to develop an AI agent that can:
 - OpenRouter API (keys) for LLMs: LLM invokation are done with API endopoints (Llama 3.2 30b).
 - Google APIs: Build connections to Google Gmail client and app API to Google Sheets.
 
-## How to Run
+## 03. How to Run
 
 ### Run Locally
 
@@ -116,7 +116,7 @@ Prerequisites
 6. Build and Run the Dockerized App: Build the Docker images and run the Docker container.
 7. The AI Agent is now running in the EC2 instance.
 
-## Future Work
+## 04. Future Work
 - Enhance the knowledge base with additional sources.
 - Integrate with advanced ticketing systems.
 - Add a dashboard for analytics and reporting.
