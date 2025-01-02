@@ -47,7 +47,7 @@ def log_activity_to_google_sheet(email_data, sheet_name="CRM AI Agent Activity L
 
 
 if __name__ == "__main__":
-
+    # test the script
     email_data = {
     "recipient": "example@gmail.com",
     "subject": "Order Inquiry",

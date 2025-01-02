@@ -1,12 +1,6 @@
-# email_agent.py
-import requests
-import json
-import os
-from langchain.prompts import PromptTemplate
 from langchain.schema.runnable import RunnableLambda
 from langchain_core.runnables import RunnableSequence
 
-from app.services.utils import get_text_from_md
 from app.reasoning_engine.reasoning_engine_helpers import *
 from app.reasoning_engine.llm import LLM
 
@@ -48,14 +42,6 @@ def reasoning_engine(email_data):
     )
 
     # Run the Chain
-    '''input_data_init = {
-        "email_id": "dashankadesilva@gmail.com",
-        "email_subject": "Help with the product I ordered",
-        "email_body": "Hello, I ordered a TurboDry 3000 hair dryer a week ago. It still has not delivered though it suppose to be delivered in 3 days. Can you please help me with this. The order number is LD3362763. Thank you. Best Dashnaka",
-        "intent": "Order Inquiries",
-        "reason": "The customer's order havent recieved in due time and looking for it",
-    }'''
-
     input_data_init = email_data
     output = chain.invoke(input_data_init)
 

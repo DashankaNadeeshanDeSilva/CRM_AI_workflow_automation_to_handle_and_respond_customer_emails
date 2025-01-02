@@ -1,5 +1,6 @@
-sales and orders replated: sales_and_order@gmail.com
-warranty, services and repairs: service@gmail.com
-refunds and billing: finance@gmail.com
-product information related: product_info@gmail.com
-complaints and feedback reporting: feddback@gmail.com
+## Contact info emails:
+- Sales and orders replated: sales_and_order@gmail.com
+- Warranty, services and repairs: service@gmail.com
+- Refunds and billing: finance@gmail.com
+- Product information related: product_info@gmail.com
+- Complaints and feedback reporting: feddback@gmail.com

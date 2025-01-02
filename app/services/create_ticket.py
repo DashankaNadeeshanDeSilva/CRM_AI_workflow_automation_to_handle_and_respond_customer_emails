@@ -63,12 +63,9 @@ class Database_Manager():
 
 
 if __name__ == "__main__":
-
+    '''Test the Database_manager class'''
     db_manager = Database_Manager()
     
-    # create the table (DONE)
-    # db_manager.create_table()
-
     email_data = {
         "email_id": "dashankadesilva@gmail.com",
         "email_subject": "Help with the product I ordered",

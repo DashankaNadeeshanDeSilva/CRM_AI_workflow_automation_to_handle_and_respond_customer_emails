@@ -26,4 +26,4 @@ At our company, we prioritize customer satisfaction. Below is our detailed polic
 - Shipping costs are non-refundable unless the product was damaged during delivery.
 - Partial refunds may be issued for items not returned in original condition.
 
-For more information, please contact our [customer service team](#).
+For more information, please contact our [customer service team] customer_service@gmail.com (#).

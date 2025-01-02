@@ -51,10 +51,3 @@ class Intent_Classifier():
         response_content = json.loads(response_data['choices'][0]['message']['content'])
 
         return response_content
-    
-        '''
-        except ValueError:
-            raise Exception(f"Failed to parse JSON response: {response.text}")
-        except ValueError:
-            raise Exception(f"Unexpected response format: {response_content}")
-        '''

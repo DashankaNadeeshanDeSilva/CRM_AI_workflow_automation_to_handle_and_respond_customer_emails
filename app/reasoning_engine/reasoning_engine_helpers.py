@@ -1,13 +1,9 @@
-import chromadb
 from langchain.prompts import PromptTemplate
-from langchain.schema.runnable import RunnableLambda
-from langchain_core.runnables import RunnableSequence
+from pathlib import Path
 from app.services.utils import get_text_from_md
 from app.knowledge_base.knowledge_base import Knowledge_Base
 from app.reasoning_engine.llm import LLM
 from app.services.create_ticket import Database_Manager
-from pathlib import Path
-import os
 
 # Retrive context from knowledge base
 def retrieve_context(input_data):
