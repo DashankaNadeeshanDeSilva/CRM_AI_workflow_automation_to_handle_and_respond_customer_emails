@@ -16,12 +16,12 @@ The goal is to develop an AI agent that can:
 ![AI_Agent_workflow](images/ai_agent_workflow.png)
 
 ### Input to the AI Agent:
-- The AI agent checks emails in regular intervals using a scheduler.
+- The AI agent checks emails at regular intervals using a scheduler.
 - Once new emails are received, they are fetched from the client.
 
 ### Reasoning Engine Tasks:
 
-#### The reasoning engine is responisble for core functionalities of the  AI Agent.
+#### The reasoning engine is responsible for the core functionalities of the  AI Agent.
 
 1. Read the email body to classify intent and reason from the input data.
 2. Decide actions using an LLM:
@@ -40,17 +40,17 @@ The goal is to develop an AI agent that can:
 - Email client: fetching emails and replying to them.
 - Vector Database:  Extracting context from the knowledge base.
 - Remote SQL Database: Create tickets.
-- Google Sheets: Log AI Agent activities .
+- Google Sheets: Log AI Agent activities.
 
 ### Main Technologies Involved
 - Python 3.10 and related libs.
 - FastAPI: REST API Application.
-- Docker: Deploy containerised application.
+- Docker: Deploy the containerised application.
 - LangChain: To create LLM, prompt and tool chain.
 - OpenRouter API (keys) for LLMs: LLM invokation are done with API endopoints (Llama 3.2 30b).
 - Google APIs: Build connections to Google Gmail client and app API to Google Sheets.
 
-## How to Run --TODO--
+## How to Run
 
 ### Run Locally
 
@@ -86,41 +86,41 @@ Prerequisites
 
 #### 1. Deployment (automated) with CI/CD pipeline (GitHub Actions)
 
-1. Configure SSH access: Get Key Pair credentials file (.pem) and add it as a GitHub secret named `EC2_SSH_KEY`
+1. Configure SSH access: Get the Key Pair credentials file (.pem) and add it as a GitHub secret named `EC2_SSH_KEY`
 2. Setup GitHub Secrets: Add `EC2_HOST` (Public IP or DNS of the EC2 instance) and `EC2_USER` (SSH username such as `ubuntu` for Ubuntu instance)
-3.  When changes are pushed to the `deploy` branch (or your desired branch), Github Actions workflow is triggered (located in `.github/workflows/deploy.yml`).
+3.  When changes are pushed to the `deploy` branch (or your desired branch), the GitHub Actions workflow is triggered (located in `.github/workflows/deploy.yml`).
 
-#### The ci/cd pipeline performs following actions:
+#### The ci/cd pipeline performs the following actions:
 - Check out to code/repo.
 - Set up SSH access to EC2 instance.
 - Copy files to the EC2 instance (Volumes).
 - Install Docker on the EC2 instance.
-- Deploy the AI Agent by building (image) and running Docker container.
+- Deploy the AI Agent by building (image) and running the Docker container.
 
 #### 2. Deployment (manual) with Docker (with Linux/macOS):
 
-1. Create an IAM Role with `AmazonEC2ContainerRegistryFullAccess` policy and attach with EC2 instance.
-2. Configure the local machine: Adjust permissions of the Key Pair file (navigate to its location) .
+1. Create an IAM Role with `AmazonEC2ContainerRegistryFullAccess` policy and attach with the EC2 instance.
+2. Configure the local machine: Adjust permissions of the Key Pair file (navigate to its location).
    ```bash 
    chmod 400 your-key.pem
    ``` 
-3. Connect to EC2 instance using SSH.
+3. Connect to the EC2 instance using SSH.
    ```bash 
    ssh -i "your-key.pem" ubuntu@<EC2-Public-IP>
    ``` 
-4. Navigate to project in your local machine and transfer files to the EC2 instance.
+4. Navigate to the project in your local machine and transfer files to the EC2 instance.
    ```bash 
    scp -i "your-key.pem" -r <my_project> ubuntu@<EC2-Public-IP>:/home/ubuntu/
    ```
-5. Verify transfered files by SSH back to EC2 instance and check in `/home/ubuntu` dir.
+5. Verify transferred files by SSH back to the EC2 instance and check in `/home/ubuntu` dir.
 6. Build and Run the Dockerized App: Build the Docker images and run the Docker container.
-7. The AI Agent it now running in the EC2 instance.
+7. The AI Agent is now running in the EC2 instance.
 
 ## Future Work
 - Enhance the knowledge base with additional sources.
 - Integrate with advanced ticketing systems.
 - Add a dashboard for analytics and reporting.
-- Add memory funtions to maintain email conversations wth back and forth communication.
+- Add memory functions to maintain email conversations with back-and-forth communication.
 
 ---
 Remarks:
