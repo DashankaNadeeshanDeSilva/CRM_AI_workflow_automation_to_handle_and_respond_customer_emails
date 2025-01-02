@@ -15,9 +15,8 @@ The goal is to develop an AI agent that can:
 
 ![AI_Agent_workflow](images/ai_agent_workflow.png)
 
-### Input to the AI Agent:
-- The AI agent checks emails at regular intervals using a scheduler.
-- Once new emails are received, they are fetched from the client.
+### How AI Agent starts:
+The AI agent checks emails at regular intervals using a scheduler. Once new emails are received, they are fetched from the client. After fetching new email(s), the reasoning engine is activated.
 
 ### Reasoning Engine Tasks:
 
@@ -31,7 +30,7 @@ The goal is to develop an AI agent that can:
 3. Generate a response email using LLM based on the email body, intent, and gathered context (including ticket numbers if created).
 4. Log activities in Google Sheets.
 
-### Actions:
+### Actions taken:
 - Create tickets via a remote database connection if required.
 - Send customer response emails, including the gathered context and ticket number if applicable.
 - Log activities into a database for tracking and reporting.
@@ -46,15 +45,15 @@ The goal is to develop an AI agent that can:
 - Python 3.10 and related libs.
 - FastAPI: REST API Application.
 - Docker: Deploy the containerised application.
-- LangChain: To create LLM, prompt and tool chain.
+- LangChain: To create a chain to run LLM, prompt and tools.
 - OpenRouter API (keys) for LLMs: LLM invokation are done with API endopoints (Llama 3.2 30b).
 - Google APIs: Build connections to Google Gmail client and app API to Google Sheets.
 
 ## 03. How to Run
 
-### Run Locally
+### <ins>Run Locally</ins>
 
-#### Using Docker
+#### (a) Using Docker
 1. Install Docker:
 
 2. Build the Docker image:
@@ -67,7 +66,7 @@ The goal is to develop an AI agent that can:
    ```
 4. Access the application at `http://localhost:8000`.
 
-#### Without Docker
+#### (b) Without Docker
 1. Install dependencies:
    ```bash
    pip install -r requirements.txt
@@ -76,28 +75,27 @@ The goal is to develop an AI agent that can:
    ```bash
    uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
    ```
-### Run in Cloud (Deploy)
+### <ins>Deploy in Cloud (AWS EC2 instance)</ins>
 
-#### Deploy in Cloud (AWS EC2 instance) 
-Prerequisites
+#### Prerequisites
 - AWS EC2 Instance: Ensure you have an EC2 instance running with SSH access.
 - SSH Key Pair: A key pair (.pem file) associated with your EC2 instance.
 - Docker and Docker Compose: Installed on your local machine and EC2 instance.
 
-#### 1. Deployment (automated) with CI/CD pipeline (GitHub Actions)
+#### (a) Deploy (automated) with CI/CD pipeline (GitHub Actions)
 
 1. Configure SSH access: Get the Key Pair credentials file (.pem) and add it as a GitHub secret named `EC2_SSH_KEY`
 2. Setup GitHub Secrets: Add `EC2_HOST` (Public IP or DNS of the EC2 instance) and `EC2_USER` (SSH username such as `ubuntu` for Ubuntu instance)
 3.  When changes are pushed to the `deploy` branch (or your desired branch), the GitHub Actions workflow is triggered (located in `.github/workflows/deploy.yml`).
 
-#### The ci/cd pipeline performs the following actions:
+#### The CI/CD pipeline performs the following actions:
 - Check out to code/repo.
 - Set up SSH access to EC2 instance.
 - Copy files to the EC2 instance (Volumes).
 - Install Docker on the EC2 instance.
 - Deploy the AI Agent by building (image) and running the Docker container.
 
-#### 2. Deployment (manual) with Docker (with Linux/macOS):
+#### (b) Deploy (manual) with Docker (for Linux/macOS):
 
 1. Create an IAM Role with `AmazonEC2ContainerRegistryFullAccess` policy and attach with the EC2 instance.
 2. Configure the local machine: Adjust permissions of the Key Pair file (navigate to its location).
