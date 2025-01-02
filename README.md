@@ -3,7 +3,7 @@
 AI agent to handle and respond to customer emails using an internal knowledge base.
 
 ## Motivation
-Businesses often receive many emails from customers inquiring about products, reporting issues, or requesting assistance. Classifying, responding to, or escalating inquiries efficiently requires significant effort. This project leverages AI to automate email management, providing timely responses and improving customer satisfaction.
+Businesses often receive many emails from customers inquiring about products, reporting issues, or requesting assistance. Responding to, or escalating inquiries efficiently requires significant effort. This project leverages AI to automate email management, providing timely responses and improving customer satisfaction.
 
 ## Goal and Objectives
 The goal is to develop an AI agent that can:
@@ -18,7 +18,7 @@ The goal is to develop an AI agent that can:
 
 ### Input Data:
 - The AI agent checks emails in regular intervals
-- Once new emails are received, they are fetched from the email client.
+- Once new emails are received, they are fetched from the client.
 
 ### Reasoning Engine Tasks:
 1. Read the email body to classify intent and reason from the input data.
@@ -96,8 +96,8 @@ Prerequisites
 - Add a dashboard for analytics and reporting.
 
 ---
-
-Feel free to reach out for any clarifications or suggestions. Enjoy using the CRM AI Agent!
+Remarks:
+This project was conducted as a learning exercise to build a basic AI Agent. Feel free to create an issue if you find any problems or feedback (both positive and negative). Feel free to reach out for any clarifications or suggestions. Thank you for checking this repository out
 
 
 
