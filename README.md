@@ -59,15 +59,17 @@ The goal is to develop an AI agent that can:
 ### Run Locally
 
 #### Using Docker
-1. Build the Docker image:
+1. Install Docker:
+
+2. Build the Docker image:
    ```bash
    docker build -t crm-ai-agent .
    ```
-2. Run the Docker container:
+3. Run the Docker container:
    ```bash
-   docker run -p 8000:8000 --env-file .env crm-ai-agent
+   docker run -p 8000:8000 --env-file .env --name crm-ai-agent crm-ai-agent
    ```
-3. Access the application at `http://localhost:8000`.
+4. Access the application at `http://localhost:8000`.
 
 #### Without Docker
 1. Install dependencies:
@@ -86,14 +88,29 @@ Prerequisites
 - SSH Key Pair: A key pair (.pem file) associated with your EC2 instance.
 - Docker and Docker Compose: Installed on your local machine and EC2 instance.
 
-#### 1. Automated deployment with CI/CD pipeline
+#### 1. Deployment (automated) with CI/CD pipeline (GitHub Actions)
 
-#### 2. Manual deployment with Docker
+1. Configure SSH access: Get private key file (.pem) and to GitHub secret `EC2_SSH_KEY`
+2. Setup GitHub Secrets: Add `EC2_HOST` (Public IP or DNS of the EC2 instance) and `EC2_USER` (SSH username such as `ubuntu` for Ubuntu instance)
+3.  When changes are pushed to the `deploy` branch, Github Actions workflow is triggered (located in `.github/workflows/deploy.yml`).
+
+#### Additional notes
+The ci/cd pipeline performs following actions:
+- Checks out to code/repo.
+- Sets up SSH access to EC2 instance.
+- Copies files to the EC2 instance (Volumes).
+- Installs Docker and Docker Compose on the EC2 instance.
+- Deploys the AI Agent application using Docker Compose.
+
+#### 2. Deployment (manual) with Docker:
+
+
 
 ## Future Work
 - Enhance the knowledge base with additional sources.
 - Integrate with advanced ticketing systems.
 - Add a dashboard for analytics and reporting.
+- Add memory funtions to maintain email conversations wth back and forth communication.
 
 ---
 Remarks:
