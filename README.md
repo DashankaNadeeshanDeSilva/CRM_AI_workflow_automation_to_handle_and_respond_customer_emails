@@ -15,12 +15,12 @@ The goal is to develop an AI agent that can:
 
 ![AI_Agent_workflow](images/ai_agent_workflow.png)
 
-### How AI Agent starts:
-The AI agent checks emails at regular intervals using a scheduler. Once new emails are received, they are fetched from the client. After fetching new email(s), the reasoning engine is activated.
 
-### Reasoning Engine Tasks:
+The AI agent checks emails at regular intervals using a scheduler. Once new emails are received, they are fetched from the client. After fetching new email(s), the **reasoning engine** is activated. The reasoning engine read the email, take actions, and generates a response email. Then the AI agent reply to the customer
 
-#### The reasoning engine is responsible for the core functionalities of the  AI Agent.
+### Reasoning Engine tasks:
+
+#### The reasoning engine is responsible for the core functionalities and actions of the AI agent.
 
 1. Read the email body to classify intent and reason from the input data.
 2. Decide actions using an LLM:
@@ -35,13 +35,13 @@ The AI agent checks emails at regular intervals using a scheduler. Once new emai
 - Send customer response emails, including the gathered context and ticket number if applicable.
 - Log activities into a database for tracking and reporting.
 
-### Tools Involved:
+### Tools involved:
 - Email client: fetching emails and replying to them.
 - Vector Database:  Extracting context from the knowledge base.
 - Remote SQL Database: Create tickets.
 - Google Sheets: Log AI Agent activities.
 
-### Main Technologies Involved
+### Technologies utilized
 - Python 3.10 and related libs.
 - FastAPI: REST API Application.
 - Docker: Deploy the containerised application.
