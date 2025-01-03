@@ -111,8 +111,12 @@ The AI agent checks emails at regular intervals using a scheduler. Once new emai
    scp -i "your-key.pem" -r <my_project> ubuntu@<EC2-Public-IP>:/home/ubuntu/
    ```
 5. Verify transferred files by SSH back to the EC2 instance and check in `/home/ubuntu` dir.
-6. Build and Run the Dockerized App: Build the Docker images and run the Docker container.
-7. The AI Agent is now running in the EC2 instance.
+6. Build and Run the Dockerized App: Build the Docker images and run the Docker container (port 80 is the default HTTP port in EC2 instance).
+   ```bash 
+   docker build -t crm-ai-agent .
+   docker run -p 80:8000 --env-file .env --name crm-ai-agent crm-ai-agent
+   ```
+7. The AI Agent is now running in the EC2 instance as a Docker container. Access it via `http://<EC2-Public-IP>:80`
 
 ## 04. Future Work
 - Enhance the knowledge base with additional sources.
