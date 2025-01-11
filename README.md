@@ -13,7 +13,7 @@ The goal is to develop an AI agent that can:
 
 ## 02. AI Agent Workflow
 
-![AI_Agent_workflow](images/ai_agent_workflow.png)
+![AI_Agent_workflow](resources/ai_agent_workflow.png)
 
 
 The AI agent checks emails at regular intervals using a scheduler. Once new emails are received, they are fetched from the client. After fetching new email(s), the **reasoning engine** is activated. The reasoning engine read the email, take actions, and generates a response email. Then the AI agent reply to the customer
