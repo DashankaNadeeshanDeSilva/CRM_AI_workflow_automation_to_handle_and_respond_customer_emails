@@ -123,6 +123,7 @@ The AI agent checks emails at regular intervals using a scheduler. Once new emai
 - Integrate with advanced ticketing systems.
 - Add a dashboard for analytics and reporting.
 - Add memory functions to maintain email conversations with back-and-forth communication.
+- Add a control panel to monitor agent activities.
 
 ---
 Remarks:
