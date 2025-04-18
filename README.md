@@ -1,6 +1,6 @@
 # CRM AI workflow to handle and respond to customer emails
 
-AI workflow to handle and respond to customer emails using an internal knowledge base.
+AI workflow automation to handle and respond to customer emails using an internal knowledge base.
 
 ## 01. Motivation and Goals
 Businesses often receive many emails from customers inquiring about products, reporting issues, or requesting assistance. Responding to, or escalating inquiries efficiently requires significant effort. This project leverages AI to automate email management, providing timely responses and improving customer satisfaction.
