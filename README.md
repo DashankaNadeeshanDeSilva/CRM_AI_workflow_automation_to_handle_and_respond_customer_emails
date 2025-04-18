@@ -1,26 +1,26 @@
-# CRM AI Agent to handle and respond to customer emails
+# CRM AI workflow to handle and respond to customer emails
 
-AI agent to handle and respond to customer emails using an internal knowledge base.
+AI workflow to handle and respond to customer emails using an internal knowledge base.
 
 ## 01. Motivation and Goals
 Businesses often receive many emails from customers inquiring about products, reporting issues, or requesting assistance. Responding to, or escalating inquiries efficiently requires significant effort. This project leverages AI to automate email management, providing timely responses and improving customer satisfaction.
 
-The goal is to develop an AI agent that can:
+The goal is to develop an AI workflow that can:
 1. Read and classify emails based on intent or actionable categories.
 2. Generate responses using a company knowledge base.
 3. Escalate by creating tickets when necessary.
 4. Log actions and maintain reports.
 
-## 02. AI Agent Workflow
+## 02. Workflow
 
-![AI_Agent_workflow](resources/ai_agent_workflow.png)
+![AI_workflow](resources/ai_agent_workflow.png)
 
 
-The AI agent checks emails at regular intervals using a scheduler. Once new emails are received, they are fetched from the client. After fetching new email(s), the **reasoning engine** is activated. The reasoning engine read the email, take actions, and generates a response email. Then the AI agent reply to the customer
+The AI workflow checks emails at regular intervals using a scheduler. Once new emails are received, they are fetched from the client. After fetching new email(s), the **reasoning engine** is activated. The reasoning engine read the email, take actions, and generates a response email. Then the AI workflow replies to the customer
 
 ### Reasoning Engine tasks:
 
-#### The reasoning engine is responsible for the core functionalities and actions of the AI agent.
+#### The reasoning engine is responsible for the core functionalities and actions of the AI workflow.
 
 1. Read the email body to classify intent and reason from the input data.
 2. Decide actions using an LLM:
@@ -39,12 +39,12 @@ The AI agent checks emails at regular intervals using a scheduler. Once new emai
 - Email client: fetching emails and replying to them.
 - Vector Database:  Extracting context from the knowledge base.
 - Remote SQL Database: Create tickets.
-- Google Sheets: Log AI Agent activities.
+- Google Sheets: Log AI workflow activities.
 
 ### Technologies utilized
 - Python 3.10 and related libs.
 - FastAPI: REST API Application.
-- Docker: Deploy the containerised application.
+- Docker: Deploy the containerized application.
 - LangChain: To create a chain to run LLM, prompt and tools.
 - OpenRouter API (keys) for LLMs: LLM invokation are done with API endopoints (Llama 3.2 30b).
 - Google APIs: Build connections to Google Gmail client and app API to Google Sheets.
