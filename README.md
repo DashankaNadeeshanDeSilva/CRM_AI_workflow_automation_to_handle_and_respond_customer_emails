@@ -3,7 +3,7 @@
 AI workflow automation to handle and respond to customer emails using an internal knowledge base.
 
 ## 01. Motivation and Goals
-Businesses often receive many emails from customers inquiring about products, reporting issues, or requesting assistance. Responding to, or escalating inquiries efficiently requires significant effort. This project leverages AI to automate email management, providing timely responses and improving customer satisfaction.
+Businesses often receive many emails from customers inquiring about products, reporting issues, or requesting assistance. Responding to or escalating inquiries efficiently requires significant effort. This project leverages AI to automate email management, providing timely responses and improving customer satisfaction.
 
 The goal is to develop an AI workflow that can:
 1. Read and classify emails based on intent or actionable categories.
@@ -15,6 +15,7 @@ The goal is to develop an AI workflow that can:
 
 ![AI_workflow](resources/ai_agent_workflow.png)
 
+Check out the detailed system architecture [here](resources/CRM_AI_automation_detailed_architetcure.png)
 
 The AI workflow checks emails at regular intervals using a scheduler. Once new emails are received, they are fetched from the client. After fetching new email(s), the **reasoning engine** is activated. The reasoning engine read the email, take actions, and generates a response email. Then the AI workflow replies to the customer
 
@@ -47,7 +48,7 @@ The AI workflow checks emails at regular intervals using a scheduler. Once new e
 - Docker: Deploy the containerized application.
 - LangChain: To create a chain to run LLM, prompt and tools.
 - OpenRouter API (keys) for LLMs: LLM invokation are done with API endopoints (Llama 3.2 30b).
-- Google APIs: Build connections to Google Gmail client and app API to Google Sheets.
+- Google APIs: Build connections to the Google Gmail client and app API to Google Sheets.
 
 ## 03. How to Run
 
